@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
-import { Login, Home } from './pages';
+import { Login, Home, Dashboard } from './pages';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </div>
   );
