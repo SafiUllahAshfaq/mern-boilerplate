@@ -1,0 +1,108 @@
+import { Form,Input,Button,Radio,Select,Cascader,DatePicker,InputNumber,TreeSelect,Switch, } from 'antd';
+import '../index.css';
+
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../constants';
+
+export const Subm = () => {
+  const navigate = useNavigate();
+
+  const onFinish = (values: any) => {
+    console.log('Success:', values);
+
+    console.log('Env variables: ', process.env);
+
+    axios
+      .post(process.env.REACT_APP_API_URL + '/sub', values)
+      .then((res) => {
+        console.log({ res });
+
+        navigate(ROUTES.dashboard);
+      })
+      .catch((err) => {
+        console.error({ err });
+      });
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  
+  return (
+    <> <h2>Submit The Schedule </h2>
+    <Form
+      labelCol={{ span: 4,  }}
+      wrapperCol={{span: 14, }}   
+      name='subm'      
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      autoComplete='off'
+    >
+      <Form.Item label="Cheque No" name='chqno' rules={[{ required: true, message: 'Please input Cheque No!' }]} >
+        <Input />
+      </Form.Item>
+
+      <Form.Item label="Amount" name='amount' rules={[{ required: true, message: 'Please input your Amount!' }]}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Payee Name" name='payeename' rules={[{ required: true, message: 'Please input your Name!' }]}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Payment Head" name='paymenthead'>
+        <Input />
+      </Form.Item>
+
+      <Form.Item label="Object Code" name='objectcode'>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Project" name='project'>
+        <Select>
+          <Select.Option value="ifa">IFA</Select.Option>
+          <Select.Option value="admin">Admin</Select.Option>
+          <Select.Option value="csp">CSP</Select.Option>
+          <Select.Option value="owsp">OWSP</Select.Option>
+        </Select>
+      </Form.Item>
+      <Form.Item label="Payment Head" name='phead'>
+        <Select>
+          <Select.Option value="ifa">head 123</Select.Option>
+          <Select.Option value="admin">Head 234</Select.Option>
+          
+        </Select>
+      </Form.Item>
+      
+      <Form.Item label="Office" name='poffice'>
+        <Select>
+          <Select.Option value="ho">Head Office</Select.Option>
+          <Select.Option value="roict">RO ICT</Select.Option>
+          <Select.Option value="romultan">RO South Punjab</Select.Option>
+          <Select.Option value="popunjab1">PO Punjab-1</Select.Option>
+          <Select.Option value="posindh">PO Sindh</Select.Option>
+          <Select.Option value="pobalochistan">PO Balochistan</Select.Option>
+          <Select.Option value="pogb">PO GB</Select.Option>
+         
+        </Select>
+      </Form.Item>
+      
+      <Form.Item label="Date" name='sdate'>
+        <DatePicker />
+      </Form.Item>
+      {/* <Form.Item label="InputNumber">
+        <InputNumber />
+      </Form.Item>
+      <Form.Item label="Switch" valuePropName="checked">
+        <Switch />
+      </Form.Item> */}
+      <Form.Item wrapperCol={{ offset: 0, span: 22 }}>
+        <Button type='ghost' htmlType='submit'>
+          Submit to Save
+        </Button>
+      </Form.Item>
+    </Form>
+  
+    </>
+  );
+};
