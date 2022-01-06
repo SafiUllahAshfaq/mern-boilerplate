@@ -9,7 +9,7 @@ export const Subm = () => {
   const navigate = useNavigate();
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+      console.log('Success:', values);
 
     console.log('Env variables: ', process.env);
 
@@ -18,7 +18,7 @@ export const Subm = () => {
       .then((res) => {
         console.log({ res });
 
-        navigate(ROUTES.dashboard);
+        navigate(ROUTES.Dashboard);
       })
       .catch((err) => {
         console.error({ err });
@@ -28,8 +28,7 @@ export const Subm = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
-
-  
+ 
   return (
     <> <h2>Submit The Schedule </h2>
     <Form
@@ -39,7 +38,7 @@ export const Subm = () => {
       initialValues={{ remember: true }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
-      autoComplete='off'
+      autoComplete='on'
     >
       <Form.Item label="Cheque No" name='chqno' rules={[{ required: true, message: 'Please input Cheque No!' }]} >
         <Input />

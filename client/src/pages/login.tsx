@@ -12,11 +12,11 @@ export const Login = () => {
     console.log('Env variables: ', process.env);
 
     axios
-      .post(process.env.REACT_APP_API_URL + '/login', values)
+      .post(process.env.REACT_APP_API_URL + '/user', values)
       .then((res) => {
         console.log({ res });
         localStorage.setItem('isAuthenticated', 'true')
-        navigate(ROUTES.dashboard);
+        navigate(ROUTES.Dashboard);
       })
       .catch((err) => {
         console.error({ err });
@@ -26,50 +26,50 @@ export const Login = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
-
-
-
-
-
-
   return (
-    <> <h1> Pakistan Bait ul Mal</h1>
+
+
+    <> <h2> Pakistan Bait ul Mal </h2>
+
 
       <Form
 
         name='loginForm'
         labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
+        wrapperCol={{ span: 8 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete='off'
+        
       >
         <Form.Item
-          label='Username'
-          name='username'
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          label=' '
+          name='username' 
+                   
+          rules={[{ required: true,  message: 'Please input your username!'  }]}
+        
         >
-          <Input />
+          <Input placeholder='Enter User Name' />
         </Form.Item>
 
         <Form.Item
-          label='Password'
+          label=' '
           name='password'
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Input.Password />
+          <Input.Password placeholder='Enter Your Password' />
         </Form.Item>
 
         <Form.Item
           name='remember'
           valuePropName='checked'
-          wrapperCol={{ offset: 8, span: 16 }}
+          wrapperCol={{ offset: 10, span: 5 }}
         >
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item wrapperCol={{ offset: 10, span: 5 }}>
           <Button type='ghost' htmlType='submit'>
             Login
           </Button>
