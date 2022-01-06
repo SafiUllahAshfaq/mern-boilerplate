@@ -39,7 +39,7 @@
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete='off'
+        autoComplete='on'
       >
         <Form.Item label='Department name' name='dptname' rules={[{ required: true, message: 'Please input Department!' }]} >
           <Input />
@@ -97,12 +97,7 @@
         <Form.Item label="Date" name='sdate'>
           <DatePicker />
         </Form.Item>
-        {/* <Form.Item label="InputNumber">
-          <InputNumber />
-        </Form.Item>
-        <Form.Item label="Switch" valuePropName="checked">
-          <Switch />
-        </Form.Item> */}
+      
         <Form.Item wrapperCol={{ offset: 0, span: 22 }}>
           <Button type='ghost' htmlType='submit'>
             Submit to Save

@@ -15,7 +15,7 @@ export const Login = () => {
       .post(process.env.REACT_APP_API_URL + '/login', values)
       .then((res) => {
         console.log({ res });
-
+        localStorage.setItem('isAuthenticated', 'true')
         navigate(ROUTES.dashboard);
       })
       .catch((err) => {
@@ -27,54 +27,54 @@ export const Login = () => {
     console.log('Failed:', errorInfo);
   };
 
-  
-    const myelement = <h1>I Love JSX!</h1>;
-  
-  
-   
+
+
+
+
+
   return (
-   <> <h1> Pakistan Bait ul Mal</h1>
-    
-    <Form
-    
-      name='loginForm'
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete='off'
-    >
-      <Form.Item
-        label='Username'
-        name='username'
-        rules={[{ required: true, message: 'Please input your username!' }]}
-      >
-        <Input />
-      </Form.Item>
+    <> <h1> Pakistan Bait ul Mal</h1>
 
-      <Form.Item
-        label='Password'
-        name='password'
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
+      <Form
 
-      <Form.Item
-        name='remember'
-        valuePropName='checked'
-        wrapperCol={{ offset: 8, span: 16 }}
+        name='loginForm'
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete='off'
       >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+        <Form.Item
+          label='Username'
+          name='username'
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type='ghost' htmlType='submit'>
-          Login
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item
+          label='Password'
+          name='password'
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name='remember'
+          valuePropName='checked'
+          wrapperCol={{ offset: 8, span: 16 }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type='ghost' htmlType='submit'>
+            Login
+          </Button>
+        </Form.Item>
+      </Form>
     </>
   );
 };

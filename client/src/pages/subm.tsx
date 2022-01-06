@@ -14,7 +14,7 @@ export const Subm = () => {
     console.log('Env variables: ', process.env);
 
     axios
-      .post(process.env.REACT_APP_API_URL + '/sub', values)
+      .post(process.env.REACT_APP_API_URL + '/subm', values)
       .then((res) => {
         console.log({ res });
 
