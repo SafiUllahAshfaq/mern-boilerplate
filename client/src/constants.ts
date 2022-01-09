@@ -1,7 +1,7 @@
 export const ROUTES = {
   home: '/',
   login: '/login',
-  Dashboard: '/dashboard',
+  dashboard: '/dashboard',
   subm:'/Subm',
-  sdefine:'/sdefine'
+  sdefine:'/sdefine',
 };

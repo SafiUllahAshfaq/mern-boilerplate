@@ -18,7 +18,7 @@ export const Subm = () => {
       .then((res) => {
         console.log({ res });
 
-        navigate(ROUTES.Dashboard);
+        navigate(ROUTES.dashboard);
       })
       .catch((err) => {
         console.error({ err });

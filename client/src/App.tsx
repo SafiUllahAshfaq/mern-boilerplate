@@ -5,7 +5,6 @@ import './App.css';
 import { ProtectedRoute } from './components/protectedRoute';
 import { ROUTES } from './constants';
 import { Login, Home, Subm, Sdefine, Dashboard } from './pages';
-
 function App() {
   return (
     <div className='App'>
@@ -13,7 +12,7 @@ function App() {
 
         <Route path={ROUTES.home} element={<Login />} />
         <Route path={ROUTES.login} element={<Login />} />
-        <Route path={ROUTES.Dashboard} element={< Dashboard />} />
+        <Route path={ROUTES.dashboard} element={ <Dashboard  />} />
         <Route path={ROUTES.subm} element={<Subm />} />
         {/* <Route path={ROUTES.sdefine} element={<Sdefine />}/> */}
         <Route path={ROUTES.sdefine} element={<ProtectedRoute  component={Sdefine}/>}/>

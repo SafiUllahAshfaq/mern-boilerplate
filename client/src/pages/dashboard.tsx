@@ -1,76 +1,70 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { Layout, Menu, Breadcrumb } from 'antd';
 import { addEmitHelper } from 'typescript';
 import { Sdefine } from '.';
-import 'antd/dist/antd.css';
-// import './index.css';
-import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   DesktopOutlined,
   PieChartOutlined,
   FileOutlined,
   TeamOutlined,
   UserOutlined,
+  SearchOutlined,
+  EyeOutlined,
 } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 export const Dashboard = () => {
-  // const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
-class SiderDemo extends React.Component {
-  state = {
-    collapsed: false,
-  };        
-
-  onCollapse = (collapsed:any) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
+  const collapseHandler = () => {
+    setCollapsed(!collapsed);
   };
 
-  render() {
-    const { collapsed } = this.state;
-    return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-          <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
-              Option 1
-            </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              Option 2
-            </Menu.Item>,,,
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9" icon={<FileOutlined />}>
-              Files
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-        </Layout>
-      </Layout>
-    );
-  }
-};
+  return (
+    <Layout style={{ minHeight: '100vh' }}>
+    <Sider collapsible collapsed={collapsed} onCollapse={collapseHandler}>
+      <div className="logo" />
+      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu.Item key="1" icon={<DesktopOutlined />}>
+        <Link to="/dashboard">Home</Link>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<PieChartOutlined />} >
+        <Link to="/subm">Enter </Link>
+        </Menu.Item>
+        <Menu.Item key="3" icon={<PieChartOutlined />} >
+        <Link to="/Sdefine">Define </Link>
+        </Menu.Item>
+        <SubMenu key="sub1" icon={<FileOutlined />} title="Report">
+          <Menu.Item key="4">Print Schedule</Menu.Item>
+          <Menu.Item key="5">Print Cheque</Menu.Item>
+          
+        </SubMenu>
+        <SubMenu key="sub2" icon={<TeamOutlined />} title="About">
+          <Menu.Item key="6">Help</Menu.Item>
+          <Menu.Item key="8">About</Menu.Item>
+        </SubMenu>
+        <Menu.Item key="9" icon={<UserOutlined />}>
+          Users
+        </Menu.Item>
+      </Menu>
+    </Sider>
+    <Layout className="site-layout">
+      {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
+      <Content style={{ margin: '0 16px' }}>
+        {/* <Breadcrumb style={{ margin: '16px 0' }}>
+           <Breadcrumb.Item>User</Breadcrumb.Item>
+          <Breadcrumb.Item>Bill</Breadcrumb.Item> 
+        </Breadcrumb> */}
+        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 ,margin: '16px 0' }}>
+          <Sdefine/>
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>V 1.1, By IT Directorate </Footer>
+    </Layout>
+  </Layout>
+);
+
 };

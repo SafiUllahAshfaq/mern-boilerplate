@@ -1,4 +1,4 @@
-import { Form, Input, Button, Radio, Select, Cascader, DatePicker, InputNumber, TreeSelect, Switch, } from 'antd';
+import { Form, Input, Button, Radio, Select, Cascader, DatePicker, InputNumber, TreeSelect, Switch, Typography, } from 'antd';
 import '../index.css';
 import react from 'react';
 import axios from 'axios';
@@ -18,7 +18,7 @@ export const Sdefine = () => {
       .then((res) => {
         console.log({ res });
 
-        navigate(ROUTES.Dashboard);
+        navigate(ROUTES.dashboard);
       })
       .catch((err) => {
         console.error({ err });
@@ -29,9 +29,9 @@ export const Sdefine = () => {
     console.log('Failed:', errorInfo);
   };
 
-
+   
   return (
-    <> <h2>Define The Schedule </h2>
+    <>     <Typography.Title level={3}>Define Schedule</Typography.Title>
       <Form
         labelCol={{ span: 4, }}
         wrapperCol={{ span: 14, }}
