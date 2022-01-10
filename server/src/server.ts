@@ -6,6 +6,9 @@ import cors from 'cors';
 
 // import { db } from './db';
 import { User } from './models/user';
+import { Sdefine } from './models/sdefine'
+import { SubmitSchedule } from './models/submit';
+
 
 // console.log({ env: process.env });
 
@@ -57,16 +60,25 @@ app.post('/login', async (req, res) => {
     res.json(user);
 });
 
-app.post('/subm', (req, res) => {
+app.post('/subm', async (req, res) => {
     console.log({ body: req.body });
 
-    res.json({ message: 'Login logic is not implemented' });
+    const { sno, chqno, amount, payeename, paymenthead, objectcode, project, phead, poffice, sdate: createdon } = req.body;
+    const SubmitSch = await SubmitSchedule.create({ chqno, amount, payeename, paymenthead, objectcode, project, phead, poffice, createdon, sno })
+
+    res.json({ SubmitSch });
 });
 
-app.post('/Sdefine', (req, res) => {
+app.post('/Sdefine', async (req, res) => {
     console.log({ body: req.body });
+    const { dptname: deptname, ddo, projectd: pdescription, pcode, aat: assaccount, costcenter, grantno, poffice: office, sdate: createdon } = req.body;
+    // const define = new Sdefine({ dptname, ddo, projectd, pcode, aat, costcenter, grantno, poffice, sdate })
 
-    res.json({ message: 'Login logic is not implemented' });
+    const define = await Sdefine.create({ deptname, ddo, pdescription, pcode, assaccount, costcenter, grantno, office, createdon })
+    // await define.save();
+
+
+    res.json({ define });
 
 });
 

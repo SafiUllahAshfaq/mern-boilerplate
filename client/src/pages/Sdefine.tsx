@@ -29,7 +29,7 @@ export const Sdefine = () => {
     console.log('Failed:', errorInfo);
   };
 
-   
+
   return (
     <>     <Typography.Title level={3}>Define Schedule</Typography.Title>
       <Form
@@ -100,7 +100,7 @@ export const Sdefine = () => {
 
         <Form.Item wrapperCol={{ offset: 0, span: 22 }}>
           <Button type='ghost' htmlType='submit'>
-            Submit to Save
+            ..Submit..
           </Button>
         </Form.Item>
       </Form>
