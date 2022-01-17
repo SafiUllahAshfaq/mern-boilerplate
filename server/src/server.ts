@@ -60,6 +60,57 @@ app.post('/login', async (req, res) => {
     res.json(user);
 });
 
+app.get('/printChq', async (req, res) => {
+    console.log({ query: req.query });
+    console.log('from sno body');
+    const { sno } = req.query;
+    const SubmitSch = await SubmitSchedule.findAndCountAll({
+        where: { sno }
+    })
+    const getDef = await Sdefine.findOne({
+        where: { activedef: 'yes' }
+
+        // where: { sno: '12' }
+    })
+
+
+    res.json({ submitSch: SubmitSch, getDef });
+
+});
+
+app.get('/printSch', async (req, res) => {
+    console.log({ query: req.query });
+    console.log('from sno body');
+    const { sno } = req.query;
+    const SubmitSch = await SubmitSchedule.findAndCountAll({
+        where: { sno }
+    })
+    const getDef = await Sdefine.findOne({
+        where: { activedef: 'yes' }
+
+        // where: { sno: '12' }
+    })
+
+    // console.log('i m here', getDef);
+    // const user = new User({ fullName, password })
+    // await user.save();
+    // const user = await User.create({ fullName, password })
+
+    // db.connect( (err:any) => {
+    //     if (err) throw err;
+    //     console.log("Connected!");
+    //     var sql = "insert into accounts  (username, password,email) values (?,?,?)";
+    //     db.query(sql, [username, password,'dad@gmail.com'], (err:any, result:any ) => {
+    //       if (err) throw err;
+    //       console.log("1 record inserted");
+
+    //     }); 
+    // });
+    res.json({ submitSch: SubmitSch, getDef });
+});
+
+
+
 app.post('/subm', async (req, res) => {
     console.log({ body: req.body });
 
