@@ -8,7 +8,7 @@ import { ROUTES } from '../constants';
 export const Sdefine = () => {
   const navigate = useNavigate();
 
-  const onFinish = (values: any) => {
+  const onSub = (values: any) => {
     console.log('Success:', values);
 
     console.log('Env variables: ', process.env);
@@ -37,7 +37,7 @@ export const Sdefine = () => {
         wrapperCol={{ span: 14, }}
         name='sdefine'
         initialValues={{ remember: true }}
-        onFinish={onFinish}
+        onFinish={onSub}
         onFinishFailed={onFinishFailed}
         autoComplete='on'
       >

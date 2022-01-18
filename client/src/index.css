@@ -17,12 +17,14 @@ code {
 }
 
 .logo {
-  height: 90px;
-  margin: 12px;
-  /* background: rgba(255, 255, 255, 0.3); */
-  background-image: url('./logo2.png');
+  height: 100px;
+  margin: 60px;
+   background: rgba(255, 255, 255, 0.3); 
+  /* background-image: url('./logo2_last.png')  ; */
+  mask-image: url('./PBMNEW.svg');
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 20px ;
 }
 
 .site-layout .site-layout-background {
@@ -30,4 +32,22 @@ code {
 }
   [data-theme="dark"] .site-layout .site-layout-background {
     background: #141414;
+  }
+
+  .printme { display:block;}
+@media print { 
+    .no-printme  { display: none;}
+    .printme  { display: block;}
+    @page :header {display: none;}
+    @page :footer {display: none;}
+    
+     @page {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    body {
+        padding-top: 72px;
+        padding-bottom: 72px ;
+    }
+
   }

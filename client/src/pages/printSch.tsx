@@ -1,6 +1,5 @@
 import { Form, Input, Button, Radio, DatePicker, InputNumber, TreeSelect, Switch, Typography, Table, Empty, Pagination, Tag, } from 'antd';
 import '../index.css';
-import './chqprint.css'
 import react, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -10,12 +9,14 @@ import { count } from 'console';
 // import Search from 'antd/lib/transfer/search';
 const { Search } = Input;
 
+
+
 interface IScheduleData {
     submitSch: { count: number, rows: any[] }, getDef: any
 }
 
 
-export const PrintChq = () => {
+export const PrintSch = () => {
     const [rowData, setRowsData] = useState<IScheduleData>({ submitSch: { count: 0, rows: [] }, getDef: {} })
 
 
@@ -42,7 +43,15 @@ export const PrintChq = () => {
             });
     };
 
+
+    const index = 1;
     const columns = [
+        {
+            title: 'S/No',
+            key: 'index',
+            render: (_text: any, _record: any, index: any) => index + 1
+
+        },
 
         {
             title: 'Cheque No',
@@ -81,53 +90,92 @@ export const PrintChq = () => {
     ];
 
 
-    return (
-        <>     <Typography.Title level={3} className='no-printme'>Print Account Cheque</Typography.Title>
+    // const data = [
+    //     {
+    //         key: '1',
+    //         chequno: 'PK32332333',
+    //         amount: 32,
+    //         project: 'IFA',
+    //     },
 
+    // ];
+
+
+
+
+    return (
+        <>
+
+            <Typography.Title level={3}>Schedule of Assigntment Account Cheque</Typography.Title>
             <pre> {JSON.stringify(rowData.getDef.id)} </pre>
 
             <Search className='no-printme' placeholder="input Schedule No " name='schno' id='schno' onSearch={onSearch} style={{ width: 200 }} />
+            <table>
+
+                <tr>
+                    <td>
+                        <pre> {JSON.stringify(rowData.getDef.deptname)} </pre>
+                    </td>
+                    <td>
+                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
+                    </td>
+                    <td>
+                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
+                    </td>
+
+                    <td>
+                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
+                    </td>
+                    <td>
+                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
+                    </td><td>
+                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
+                    </td><td>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+
+                        <pre>  {JSON.stringify(rowData.getDef.ddo)} </pre>
+                    </td>
+                </tr>
+
+            </table>
+
+            {/* <Form.Item wrapperCol={{ offset: 0, span: 22 }}>
+
+                <Form.Item label="Enter Schedule No" name='schno'>
+                    <Input />
+                    <Button type='ghost' htmlType='submit' onClick={onSearch}>
+                        Load Schedule
+                    </Button>
+                </Form.Item>
+
+            </Form.Item> */}
+
 
             <div id='prt' className='printme'>
 
-                <Table columns={columns} dataSource={rowData.submitSch.rows} rowKey={'id'} size="small" className='no-printme' />
+
+                <Table columns={columns} dataSource={rowData.submitSch.rows} rowKey={'id'} size="small" pagination={false} />
                 <Button className='no-printme' type='ghost' htmlType='submit' onClick={() => window.print()} >
                     Print...
                 </Button>
             </div>
 
-            <div id="main" className='maincss'  >
-                <div className='datep'>
-                    02-02-2022
-                </div>
-                <div className='datem'>
-                    01-02-2022
-                </div>
-                <div className='payto'>
-                    Gulzar Bibi 611261262162212
-                </div>
-
-                <div className='rupees'>
-                    Twenty Five Thousand
-                </div>
-                <div className='rs'>
-                    25000/-
-                </div>
-                <div className='asgno'>
-                    270326-8/158995442
-                </div>
-                <div className='pbm'>
-                    Pakistan Bait ul Mal
-                </div>
-                <div className='pay2p'>
-                    Gulzar Bibi 611261262162212
-                </div>
-                <div className='rsp'>
-                    25000/-
-                </div>
+            <div>
+                <br></br>
+                <p> Signature DDO </p>
             </div>
 
 
+            {/* <h1 className="no-printme"> do not print this </h1>
+            <div className='printme'>
+                Print this only
+            </div>
+            <button className='no-printme' onClick={() => window.print()} >Print only the above div</button> */}
 
 
 

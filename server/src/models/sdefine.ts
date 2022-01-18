@@ -14,10 +14,11 @@ interface IDefine {
     grantno: string,
     office: string,
     createdon: Date,
+    activedef: string
 
 }
 
-interface IDefineCreate extends Optional<IDefine, 'id' | 'deptname' | 'ddo' | 'pdescription' | 'pcode' | 'assaccount' | 'costcenter' | 'grantno' | 'office' | 'createdon'> { }
+interface IDefineCreate extends Optional<IDefine, 'id' | 'deptname' | 'ddo' | 'pdescription' | 'pcode' | 'assaccount' | 'costcenter' | 'grantno' | 'office' | 'createdon' | 'activedef'> { }
 
 interface IDefineModel extends Model<IDefine, IDefineCreate> { }
 
@@ -51,6 +52,9 @@ export const Sdefine = db.define<IDefineModel>('sdefination', {
     },
     createdon: {
         type: DATE
+    },
+    activedef: {
+        type: STRING
     },
 
 

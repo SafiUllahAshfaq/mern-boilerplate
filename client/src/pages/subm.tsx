@@ -62,19 +62,21 @@ export const Subm = () => {
           <Input />
         </Form.Item>
         <Form.Item label="Project" name='project'>
-          <Select>
+          <Input />
+          {/* <Select>
             <Select.Option value="ifa">IFA</Select.Option>
             <Select.Option value="admin">Admin</Select.Option>
             <Select.Option value="csp">CSP</Select.Option>
             <Select.Option value="owsp">OWSP</Select.Option>
-          </Select>
+          </Select> */}
         </Form.Item>
         <Form.Item label="Payment Head" name='phead'>
-          <Select>
+          <Input />
+          {/* <Select>
             <Select.Option value="ifa">head 123</Select.Option>
             <Select.Option value="admin">Head 234</Select.Option>
 
-          </Select>
+          </Select> */}
         </Form.Item>
 
         <Form.Item label="Office" name='poffice'>
