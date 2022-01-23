@@ -10,13 +10,14 @@ import { PrintSch } from './pages/printSch';
 
 function App() {
 
-
+  const isLoggedin = localStorage.getItem('isAuthenticated');
 
   return (
 
     <>
 
-      <Dashboard />
+      {isLoggedin ? <Dashboard /> : null}
+
       {/* <Routes>
         <Route element={<ProtectedRoute component={Dashboard} />} />
       </Routes> */}

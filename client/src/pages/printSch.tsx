@@ -6,12 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants';
 import table from 'antd/lib/table';
 import { count } from 'console';
+import { borderBottom } from '@mui/system';
 // import Search from 'antd/lib/transfer/search';
 const { Search } = Input;
 
 
 
 interface IScheduleData {
+
     submitSch: { count: number, rows: any[] }, getDef: any
 }
 
@@ -23,28 +25,22 @@ export const PrintSch = () => {
     // const [state, setState] = useState({rowData: { count: 0, rows: [] }, colData: {}, thre: {}})
     const navigate = useNavigate();
     const onSearch = (value: string) => {
-        console.log('Success:', value);
-
-        console.log('Env variables: ', process.env);
-
+        // console.log('Success:', value);
+        // console.log('Env variables: ', process.env);
         // axios.post(process.env.REACT_APP_API_URL + '/printSch', { sno: value })
         axios.get<IScheduleData>(process.env.REACT_APP_API_URL + '/printSch' + `?sno=${value}`)
-
             .then((res) => {
                 console.log({ res });
                 setRowsData(res.data);
                 // setRowData(res.data.getDef);
-
                 // navigate(ROUTES.dashboard);
-                console.log('Success2:', value);
+                // console.log('Success2:', value);
             })
             .catch((err) => {
                 console.error({ err });
             });
     };
 
-
-    const index = 1;
     const columns = [
         {
             title: 'S/No',
@@ -52,12 +48,9 @@ export const PrintSch = () => {
             render: (_text: any, _record: any, index: any) => index + 1
 
         },
-
         {
             title: 'Cheque No',
-
             dataIndex: 'chqno',
-
         },
         {
             title: 'Amount',
@@ -90,56 +83,34 @@ export const PrintSch = () => {
     ];
 
 
-    // const data = [
-    //     {
-    //         key: '1',
-    //         chequno: 'PK32332333',
-    //         amount: 32,
-    //         project: 'IFA',
-    //     },
-
-    // ];
 
 
+    console.log('totalTaxes');
+
+    var today = new Date(),
+
+        curdate = today.getDate() + '-' + today.toLocaleString('default', { month: 'long' }) + '-' + today.getFullYear();
 
 
     return (
         <>
 
+
             <Typography.Title level={3}>Schedule of Assigntment Account Cheque</Typography.Title>
-            <pre> {JSON.stringify(rowData.getDef.id)} </pre>
+            {/* <pre> {JSON.stringify(rowData.submitSch.rows[1].amount} </pre> */}
 
             <Search className='no-printme' placeholder="input Schedule No " name='schno' id='schno' onSearch={onSearch} style={{ width: 200 }} />
-            <table>
-
-                <tr>
-                    <td>
-                        <pre> {JSON.stringify(rowData.getDef.deptname)} </pre>
-                    </td>
-                    <td>
-                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
-                    </td>
-                    <td>
-                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
-                    </td>
-
-                    <td>
-                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
-                    </td>
-                    <td>
-                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
-                    </td><td>
-                        <pre> {JSON.stringify(rowData.getDef.ddo)} </pre>
-                    </td><td>
-
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>
-
-                        <pre>  {JSON.stringify(rowData.getDef.ddo)} </pre>
-                    </td>
+            <table style={{ textAlign: 'left', }}>
+                <tr style={{ borderBottom: '1px solid black' }}>
+                    <td><pre>   DDO : {(rowData.getDef.ddo)} Department :  {(rowData.getDef.deptname)} </pre>
+                    </td></tr>
+                <tr style={{ borderBottom: '1px solid black' }}>
+                    <td><pre>   Project Description : {(rowData.getDef.pdescription)}  Project Code:  {(rowData.getDef.pcode)} </pre>
+                    </td></tr>
+                <tr style={{ borderBottom: '1px solid black' }}><td><pre>   Assignment Account {(rowData.getDef.assaccount)} Cost Center {(rowData.getDef.costcenter)} </pre>
+                </td></tr>
+                <tr style={{ borderBottom: '1px solid black' }}><td><pre>   Grant No :  {(rowData.getDef.grantno)}  Date:   {curdate} </pre>
+                </td>
                 </tr>
 
             </table>
@@ -167,6 +138,17 @@ export const PrintSch = () => {
 
             <div>
                 <br></br>
+
+                <table style={{ textAlign: 'left', borderColor: 'black', borderStyle: 'groove' }}>
+
+                    <tr >
+                        <td>
+                            <pre>Total Amount of the Schedule is </pre>
+                            <pre>Department :  { } </pre>
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
                 <p> Signature DDO </p>
             </div>
 
@@ -182,3 +164,7 @@ export const PrintSch = () => {
         </>
     );
 };
+function amount(amount: any): any {
+    throw new Error('Function not implemented.');
+}
+

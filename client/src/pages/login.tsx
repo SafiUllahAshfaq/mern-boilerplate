@@ -22,6 +22,7 @@ export const Login = () => {
 
           localStorage.setItem('isAuthenticated', 'true')
           navigate(ROUTES.dashboard);
+          window.location.reload();
 
         }
         else { setInvalidCred(true) }

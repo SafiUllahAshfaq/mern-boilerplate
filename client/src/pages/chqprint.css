@@ -1,16 +1,37 @@
+.outerdiv
+{
+  width: 29.7cm;
+  height: 19cm;
+ 
+  margin: 1cm auto;
+  border: 1px #D3D3D3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-size: 16;
+}
 .maincss{
-
+  
 	background-image:url(../Cheq.jpg);
 	background-repeat:no-repeat;
 	background-position:center;
 	background-size:cover;
 	height:385px; 
 	width:1086px;
-    margin-left: 40px;
-    position: relative;
+    /* margin-left: 40px; */
+    position:relative;
     border: 1px solid black;
     
 	
+}
+
+.project {
+  position:absolute;
+  display:inline;
+  top: 105px;
+  left: 190px;
+  
 }
 
 .datep {
@@ -39,7 +60,7 @@
   .rupees {
     position:absolute;
     display:inline;
-    top: 233px;]
+    top: 233px;
     left: 516px;
     
   }
@@ -68,6 +89,17 @@
     font-size: 20px;
     
   }
+
+  
+  .stamp {
+    position:absolute;
+    display:inline;
+    top: 144px;
+    left: 698px;
+    font-weight: 750;
+    font-size: 20px;
+    
+  }
   .pay2p {
     position:absolute;
     display:inline;
@@ -82,6 +114,17 @@
     display:inline;
     top: 250px;
     left: 120px;
+   
+  }
+  
+  .cross {
+    position:absolute;
+    display:inline;
+    font-weight: 700;
+    text-decoration: underline;
+    top: 3px;
+    left: 435px;
+     /* text-orientation: sideways; */
    
   }
 

@@ -1,113 +1,194 @@
-import React, { Component, useState } from 'react';
-import { Layout, Menu, Breadcrumb, Switch } from 'antd';
-import { addEmitHelper } from 'typescript';
-import { Sdefine, Subm } from '.';
-import { useNavigate } from 'react-router-dom';
+
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants';
 
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  SearchOutlined,
-  EyeOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
-import { BrowserRouter as Router, Link, Route, Navigator, BrowserRouter, Routes, Navigate } from 'react-router-dom';
-import { render } from 'react-dom';
 
-const { Header, Content, Footer, Sider } = Layout;
+import { Menu } from 'antd';
+import { MailOutlined, AppstoreOutlined, SettingOutlined, SyncOutlined, UserAddOutlined, PaperClipOutlined, PicCenterOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Footer } from 'antd/lib/layout/layout';
+import { colors } from '@mui/material';
+
 const { SubMenu } = Menu;
-
-function Dashboard1() {
-  return <div>Dashboard</div>;
-}
-function Meseros() {
-  return <div>Meseros</div>;
-
-}
-
-
-// class RouterApp extends Component {
-//   state = {
-//     collapsed: false
-//   };
-
 
 
 export const Dashboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
 
-  const collapseHandler = () => {
-    setCollapsed(!collapsed);
-  };
   const navigate = useNavigate();
-
   function logOut() {
     window.localStorage.clear();
     navigate(ROUTES.login);
+    window.location.reload();
+  };
+  const pages = [{ title: 'Schedule', url: ROUTES.subm }, { title: 'Define', url: ROUTES.sdefine }, { title: 'Print Schedule', url: ROUTES.printSch }];
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event: any) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: any) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   return (
 
-    <Layout style={{ minHeight: '20vh' }} className='no-printme'>
-      <Sider collapsible collapsed={collapsed} onCollapse={collapseHandler}>
-        <div className="logo" />
+    <>
+      <Menu mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-60deg, #055c2f 20%, #1a283d 20% ) ' }} >
+        {/* <Menu mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-70deg, #fa7c30 30%, rgba(10, 34, 0, 0) 30%)' }} > */}
+        <SubMenu key="sub1" icon={<PicCenterOutlined />} title="Prepare"  >
 
+          <Menu.Item key="1"><Link to="/Sdefine"  >Define </Link></Menu.Item>
+          <Menu.Item key="2"><Link to="/subm">Schedule </Link></Menu.Item>
 
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          {/* <Button variant="btn btn-success" onClick={() => history.push('/Products')}>Click button to view products</Button> */}
-
-          <Menu.Item key="1" icon={<DesktopOutlined />}>
-            < Link to="/dashboard" > Home</Link>
-            <Link to="/Dashboard"> </Link>
-          </Menu.Item>
-
-          <Menu.Item key="2" icon={<PieChartOutlined />} >
-            <Link to="/subm">Enter </Link>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<PieChartOutlined />} >
-            <Link to="/Sdefine">Define </Link>
-          </Menu.Item>
-          <SubMenu key="sub1" icon={<FileOutlined />} title="Report">
-            <Menu.Item key="4">   <Link to="/printSch">Print Schedule </Link></Menu.Item>
-            <Menu.Item key="5">
-              <Link to="/printChq">Print Cheque </Link></Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub2" icon={<PaperClipOutlined />} title="Print">
+          <Menu.Item key="5"><Link to="/printSch"> Schedule </Link></Menu.Item>
+          <Menu.Item key="6"><Link to="/printChq">Cheque </Link></Menu.Item>
+          <SubMenu key="sub3" title="Manage">
+            <Menu.Item key="7">Cancel Cheque</Menu.Item>
+            <Menu.Item key="8">......</Menu.Item>
 
           </SubMenu>
-          <SubMenu key="sub2" icon={<TeamOutlined />} title="About">
-            <Menu.Item key="6">Help</Menu.Item>
-            <Menu.Item key="8">About</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="9" icon={<UserOutlined />}>
-            Users
-          </Menu.Item>
-          <Menu.Item key="10" icon={<UserOutlined />} onClick={logOut}>
-            LogOut
-          </Menu.Item>
-        </Menu>
-      </Sider >
-      <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }} />
-        <Content style={{ margin: '0 0px' }}>
+        </SubMenu>
+        <SubMenu key="sub4" icon={<UserAddOutlined />} title="Manage">
+          <Menu.Item key="9">Create User</Menu.Item>
+          <Menu.Item key="12">Request</Menu.Item>
+        </SubMenu>
 
-          <div className="site-layout-background" style={{ padding: 0, minHeight: 0, margin: '16px 0' }}>
-            <div>
+        <SubMenu key="sub5" onTitleClick={logOut} icon={<LogoutOutlined />} title="Logout" >
 
-              {< Sdefine />}
-            </div>
+        </SubMenu>
+      </Menu><Footer style={{ textAlign: 'center' }}>V 1.1, By IT Directorate </Footer></>
 
+    // <AppBar position="static">
+    //   <Container maxWidth="xl">
+    //     <Toolbar disableGutters>
+    //       <Typography
+    //         variant="h6"
+    //         noWrap
+    //         component="div"
+    //         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+    //       >
+    //         PBM
+    //       </Typography>
 
-          </div>
-        </Content>
-        {<Footer style={{ textAlign: 'center' }}>V 1.1, By IT Directorate </Footer>}
-      </Layout >
-    </Layout >
+    //       <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    //         <IconButton
+    //           size="large"
+    //           aria-label="account of current user"
+    //           aria-controls="menu-appbar"
+    //           aria-haspopup="true"
+    //           onClick={handleOpenNavMenu}
+    //           color="inherit"
+    //         >
+    //           <MenuIcon />
+    //         </IconButton>
+    //         <Menu
+    //           id="menu-appbar"
+    //           anchorEl={anchorElNav}
+    //           anchorOrigin={{
+    //             vertical: 'bottom',
+    //             horizontal: 'left',
+    //           }}
+    //           keepMounted
+    //           transformOrigin={{
+    //             vertical: 'top',
+    //             horizontal: 'left',
+    //           }}
+    //           open={Boolean(anchorElNav)}
+    //           onClose={handleCloseNavMenu}
+    //           sx={{
+    //             display: { xs: 'block', md: 'none' },
+    //           }}
+    //         >
+    //           <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+    //             <Link to={page.url}>  <Typography textAlign="center">  {page.title}  </Typography> </Link>
+    //           </MenuItem>
 
+    //           {/* {pages.map((page) => (
+    //             <MenuItem key={page.title} onClick={handleCloseNavMenu}    >
+
+    //               <Link to={page.url}>  <Typography textAlign="center">  {page.title}  </Typography> </Link>
+    //             </MenuItem>
+    //           ))} */}
+    //         </Menu>
+    //       </Box>
+    //       <Typography
+    //         variant="h6"
+    //         noWrap
+    //         component="div"
+    //         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+    //       >
+    //         PBM
+    //       </Typography>
+    //       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+    //         {pages.map((page) => (
+    //           <Button
+    //             key={page.title}
+    //             onClick={handleCloseNavMenu}
+    //             sx={{ my: 2, color: 'white', display: 'block' }}
+    //           >
+    //             <Link to={page.url}>  <Typography textAlign="center">  {page.title}  </Typography> </Link>
+    //           </Button>
+    //         ))}
+    //       </Box>
+
+    //       <Box sx={{ flexGrow: 0 }}>
+    //         <Tooltip title="Open settings">
+    //           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+    //             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+
+    //           </IconButton>
+    //         </Tooltip>
+    //         <Menu
+    //           sx={{ mt: '45px' }}
+    //           id="menu-appbar"
+    //           anchorEl={anchorElUser}
+    //           anchorOrigin={{
+    //             vertical: 'top',
+    //             horizontal: 'right',
+    //           }}
+    //           keepMounted
+    //           transformOrigin={{
+    //             vertical: 'top',
+    //             horizontal: 'right',
+    //           }}
+    //           open={Boolean(anchorElUser)}
+    //           onClose={handleCloseUserMenu}
+    //         >
+    //           {settings.map((setting) => (
+    //             <MenuItem key={setting} onClick={handleCloseNavMenu}>
+    //               <Typography textAlign="center">{setting}</Typography>
+    //             </MenuItem>
+    //           ))}
+    //         </Menu>
+    //       </Box>
+    //     </Toolbar>
+    //   </Container>
+    // </AppBar>
   );
 
 };
-
 
