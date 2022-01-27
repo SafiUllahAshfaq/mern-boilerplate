@@ -1,6 +1,6 @@
 export * from './home';
 export * from './login';
-export * from './Dashboard';
+export * from './dashboard';
 export * from './subm';
 export * from './Sdefine';
 export * from './printChq'
