@@ -1,6 +1,6 @@
 .outerdiv
 {
-  width: 29.7cm;
+  /* width: 29.7cm;
   height: 19cm;
  
   margin: 1cm auto;
@@ -9,19 +9,26 @@
   background: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   position: relative;
-  font-size: 16;
+  font-size: 16; */
 }
 .maincss{
   
+  page-break-before:always;
 	background-image:url(../Cheq.jpg);
 	background-repeat:no-repeat;
+  margin-top: 250px;
+  margin-left: 5px;
 	background-position:center;
 	background-size:cover;
 	height:385px; 
 	width:1086px;
     /* margin-left: 40px; */
     position:relative;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    page-break-after: always;
+    font-size: 14px;
+    font-weight: 700px;
+    
     
 	
 }
@@ -38,21 +45,21 @@
   position:absolute;
   display:inline;
   top: 141px;
-  left: 103px;
+  left: 80px;
   
 }
 .datem {
     position:absolute;
     display:inline;
-    top: 142px;
-    left: 935px;
+    top: 141px;
+    left: 960px;
     
   }
 
   .payto {
     position:absolute;
     display:inline;
-    top: 210px;
+    top: 217px;
     left: 516px;
     
   }
@@ -60,14 +67,14 @@
   .rupees {
     position:absolute;
     display:inline;
-    top: 233px;
+    top: 240px;
     left: 516px;
     
   }
   .rs {
     position:absolute;
     display:inline;
-    top: 323px;
+    top: 340px;
     left: 502px;
     
   }
@@ -76,7 +83,7 @@
     position:absolute;
     display:inline;
     top: 44px;
-    left: 894px;
+    left: 930px;
     
   }
 
@@ -85,8 +92,9 @@
     display:inline;
     top: 121px;
     left: 421px;
-    font-weight: 800;
-    font-size: 20px;
+    font-weight: 750;
+    font-size: 18px;
+    border: 1px solid black ;
     
   }
 
@@ -94,17 +102,18 @@
   .stamp {
     position:absolute;
     display:inline;
-    top: 144px;
-    left: 698px;
-    font-weight: 750;
-    font-size: 20px;
+    top: 160px;
+    left: 697px;
+    font-weight: 650;
+    font-size: 13px;
+    border: 1px solid black ;
     
   }
   .pay2p {
     position:absolute;
     display:inline;
     top: 197px;
-    left: 112px;
+    left: 65px;
     width: 200px;
     
     
@@ -112,7 +121,7 @@
   .rsp {
     position:absolute;
     display:inline;
-    top: 250px;
+    top: 255px;
     left: 120px;
    
   }
@@ -122,8 +131,23 @@
     display:inline;
     font-weight: 700;
     text-decoration: underline;
-    top: 3px;
-    left: 435px;
+    top: 36px;
+    left: 372px;
+    transform: rotate(310deg);
+    
+     /* text-orientation: sideways; */
+   
+  }
+
+  .crossline {
+    position:absolute;
+    display:inline;
+    font-weight: 800;
+   
+    top: 150px;
+    left: 473px;
+    
+    
      /* text-orientation: sideways; */
    
   }

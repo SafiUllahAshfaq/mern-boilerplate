@@ -1,24 +1,12 @@
 
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants';
 
 
 import { Menu } from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined, SyncOutlined, UserAddOutlined, PaperClipOutlined, PicCenterOutlined, LogoutOutlined } from '@ant-design/icons';
+import { UserAddOutlined, PaperClipOutlined, PicCenterOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Footer } from 'antd/lib/layout/layout';
-import { colors } from '@mui/material';
 
 const { SubMenu } = Menu;
 
@@ -55,7 +43,7 @@ export const Dashboard = () => {
   return (
 
     <>
-      <Menu mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-60deg, #055c2f 20%, #1a283d 20% ) ' }} >
+      <Menu className='no-printme' mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-60deg, #055c2f 20%, #1a283d 20% ) ' }} >
         {/* <Menu mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-70deg, #fa7c30 30%, rgba(10, 34, 0, 0) 30%)' }} > */}
         <SubMenu key="sub1" icon={<PicCenterOutlined />} title="Prepare"  >
 
@@ -67,8 +55,8 @@ export const Dashboard = () => {
           <Menu.Item key="5"><Link to="/printSch"> Schedule </Link></Menu.Item>
           <Menu.Item key="6"><Link to="/printChq">Cheque </Link></Menu.Item>
           <SubMenu key="sub3" title="Manage">
-            <Menu.Item key="7">Cancel Cheque</Menu.Item>
-            <Menu.Item key="8">......</Menu.Item>
+            <Menu.Item key="7"><Link to="/updateSchedule">Cancel Cheque </Link></Menu.Item>
+            <Menu.Item key="8"><Link to="/deleteCheque">Delete Cheque </Link></Menu.Item>
 
           </SubMenu>
         </SubMenu>
@@ -80,7 +68,10 @@ export const Dashboard = () => {
         <SubMenu key="sub5" onTitleClick={logOut} icon={<LogoutOutlined />} title="Logout" >
 
         </SubMenu>
-      </Menu><Footer style={{ textAlign: 'center' }}>V 1.1, By IT Directorate </Footer></>
+      </Menu>
+      {/* <Footer style={{ textAlign: 'center' }}>V 1.1, By IT Directorate </Footer> */}
+
+    </>
 
     // <AppBar position="static">
     //   <Container maxWidth="xl">

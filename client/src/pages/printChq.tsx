@@ -1,19 +1,12 @@
-import { Form, Input, Button, Radio, DatePicker, InputNumber, TreeSelect, Switch, Typography, Table, Empty, Pagination, Tag, } from 'antd';
+import { Input, Button, Typography, } from 'antd';
 import '../index.css';
 import './chqprint.css'
-import react, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../constants';
-import table from 'antd/lib/table';
-import { count } from 'console';
-import locale from 'antd/lib/date-picker/locale/en_US';
-import { stringify } from 'querystring';
-import { Assignment } from '@mui/icons-material';
 // import Search from 'antd/lib/transfer/search';
 var converter = require('number-to-words');
 const { Search } = Input;
-
 
 // let newDate = new Date();
 
@@ -35,16 +28,19 @@ interface ICheque {
         poffice: string,
         createdon: string,
         sno: string,
-    }
+    },
+    assno: string,
+
 }
 
 var today = new Date(),
 
     curdate = today.getDate() + '-' + today.toLocaleString('default', { month: 'long' }) + '-' + today.getFullYear();
+var curdate2 = today.getDate() + '-' + today.toLocaleString('default', { month: 'short' }) + '-' + today.getFullYear();
 
 
 
-const Cheque = (props: ICheque, assno: any) => {
+const Cheque = (props: ICheque) => {
 
     //  console.log({ props.assignmentno })
 
@@ -52,9 +48,9 @@ const Cheque = (props: ICheque, assno: any) => {
 
     return <div className='outerdiv'>
 
-        <div id="main" className='maincss' style={{ marginTop: 150 }}  >
+        <div id="main" className='maincss' >
             <div className='datep'>
-                {curdate}
+                {curdate2}
             </div>
             <div className='datem'>
                 {curdate}
@@ -65,15 +61,16 @@ const Cheque = (props: ICheque, assno: any) => {
 
             <div className='rupees'>
 
-                {converter.toWords(amount)}
+                {/* {converter.toWords(amount).toLocaleUpperCase()} only */}
+                {converter.toWords(amount)} only
 
             </div>
             <div className='rs'>
-                {amount}
+                {amount}/=
             </div>
             <div className='asgno'>
 
-                270326-8/158995442
+                {props.assno}
             </div>
             <div className='pbm'>
                 Pakistan Bait ul Mal
@@ -82,16 +79,18 @@ const Cheque = (props: ICheque, assno: any) => {
                 {payeename}
             </div>
             <div className='rsp'>
-                {amount}
+                {amount}/=
             </div>
             <div className='cross'>
-                Pyaee Name
+                Pyaee (A.C) Only
             </div>
             <div className='stamp'>
-                Stamp ........ stamp
-            </div>
+                Civic Center, Islamabad (0341)            </div>
             <div className='project'>
                 {project}
+            </div>
+            <div className='crossline'>
+                ____________________________________
             </div>
         </div>
     </div >
@@ -99,6 +98,7 @@ const Cheque = (props: ICheque, assno: any) => {
 
 export const PrintChq = () => {
     const [rowData, setRowsData] = useState<IScheduleData>({ submitSch: { count: 0, rows: [] }, getDef: {} })
+
 
     const Assignmentno = (rowData.getDef.assaccount);
     // const [state, setState] = useState({rowData: { count: 0, rows: [] }, colData: {}, thre: {}})
@@ -167,8 +167,8 @@ export const PrintChq = () => {
     return (
         <>
 
-            <h1> skdflas </h1>
-            <pre>   Assignment Account {(rowData.getDef.assaccount)} </pre>
+            {/* <h1> skdflas </h1>
+            <pre>   Assignment Account {(rowData.getDef.assaccount)} </pre> */}
             {/* <pre> {JSON.stringify(rowData.getDef.deptname)} </pre> */}
             {/* <pre> {JSON.stringify(rowData.submitSch.rows[0])} </pre> */}
 
@@ -176,26 +176,31 @@ export const PrintChq = () => {
             {/* {rowData.submitSch.rows[0] ? <pre> {JSON.stringify(rowData.submitSch.rows[0]?.id)} </pre> : null} */}
 
             {/* <pre> this is  </pre> */}
-
-
+            <br />
+            <br />
             <Typography.Title level={3} className='no-printme'>Print Account Cheque</Typography.Title>
-            <Search className='no-printme' placeholder="input Schedule No " name='schno' id='schno' onSearch={onSearch} style={{ width: 200 }} />
+            <Search className='no-printme' title='Enter Schedule No to Fetch Cheques' placeholder="input Schedule No " name='schno' id='schno' onSearch={onSearch} style={{ width: 200 }} />
 
 
+
+            <br />
+            <br />
             <div id='prt' className='printme'>
 
                 {/* <Table columns={columns} dataSource={rowData.submitSch.rows} rowKey={'id'} size="small" className='no-printme' /> */}
                 <Button className='no-printme' type='ghost' htmlType='submit' onClick={() => window.print()} >
-                    Print...
+                    Press to Print
                 </Button>
             </div>
 
             {
+
                 rowData.submitSch.rows.map((record) => {
                     return <
                         Cheque key={record.id}
-                        details={record}
+                        details={record} assno={rowData.getDef.assaccount}
 
+                    //   { <pre> {JSON.stringify(rowData.getDef.deptname)} </pre> }
                     // id={id}
 
                     // chqno={chqno}

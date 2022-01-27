@@ -7,6 +7,10 @@ import { ROUTES } from './constants';
 import { Login, Home, Subm, Sdefine, Dashboard } from './pages';
 import { PrintChq } from './pages/printChq';
 import { PrintSch } from './pages/printSch';
+import { UpdateSchedule } from './pages/updateSchedule';
+import { DeleteCheque } from './pages/deleteCheque';
+
+
 
 function App() {
 
@@ -36,6 +40,10 @@ function App() {
           <Route path={ROUTES.sdefine} element={<ProtectedRoute component={Sdefine} />} />
           <Route path={ROUTES.printSch} element={<ProtectedRoute component={PrintSch} />} />
           <Route path={ROUTES.printChq} element={<ProtectedRoute component={PrintChq} />} />
+          <Route path={ROUTES.updateSchedule} element={<ProtectedRoute component={UpdateSchedule} />} />
+          <Route path={ROUTES.deleteCheque} element={<ProtectedRoute component={DeleteCheque} />} />
+
+
 
           {/* <ProtectedRoute  component={<Sdefine />}/> */}
         </Routes>

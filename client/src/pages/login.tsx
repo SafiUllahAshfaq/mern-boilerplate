@@ -1,9 +1,13 @@
 import { Form, Input, Button, Checkbox, Typography, AutoComplete } from 'antd';
+import './login.css';
+import './chqprint.css'
+
 import { Content } from 'antd/lib/layout/layout';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants';
+import { fontSize } from '@mui/system';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -41,8 +45,15 @@ export const Login = () => {
     <>
       <br />
       <br />
-      <Content style={{ padding: '0 3px', backgroundColor: 'whitesmoke', margin: 'auto auto', borderRadius: '30px' }}>
-        <Typography.Title level={3}>Pakistan Bait ul Mal</Typography.Title>
+
+      <Content >
+        <div style={{ background: 'linear-gradient(-60deg, #055c2f 20%, #1a283d 20% )', textAlign: 'left', paddingLeft: '10px' }}>
+          <p style={{ fontSize: '25px', fontWeight: '700px', color: 'white', fontStyle: 'italic' }} >  Pakistan Bait ul Mal</p>
+        </div>
+
+        <br />
+        <br />
+        <br />
         <br />
         <br />
 

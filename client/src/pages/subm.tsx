@@ -19,6 +19,9 @@ export const Subm = () => {
         console.log({ res });
 
         navigate(ROUTES.dashboard);
+        alert('Record saved! Press to Continue....');
+        navigate(ROUTES.subm);
+
       })
       .catch((err) => {
         console.error({ err });
@@ -30,7 +33,8 @@ export const Subm = () => {
   };
 
   return (
-    <>   <Typography.Title level={3}>Submit The Schedule</Typography.Title>
+    <>
+      <br />  <Typography.Title level={3}>Prepare Schedule</Typography.Title>
 
       <Form
         labelCol={{ span: 4, }}
@@ -103,7 +107,7 @@ export const Subm = () => {
       </Form.Item> */}
         <Form.Item wrapperCol={{ offset: 0, span: 22 }}>
           <Button type='ghost' htmlType='submit'>
-            ...Submit ....
+            ...Submit ...
           </Button>
         </Form.Item>
       </Form>

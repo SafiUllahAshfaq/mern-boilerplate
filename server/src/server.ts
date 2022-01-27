@@ -60,6 +60,60 @@ app.post('/login', async (req, res) => {
     res.json(user);
 });
 
+app.get('/deleteCheque', async (req, res) => {
+    console.log({ query: req.query });
+    console.log('from sno body');
+    const { sno } = req.query;
+    const { sno2 } = req.query;
+    console.log(sno, sno2);
+
+    const CancelChq = await SubmitSchedule.destroy({
+        where: { chqno: sno2, sno }
+    })
+
+    const SubmitSch = await SubmitSchedule.findAndCountAll({
+        where: { sno }
+    })
+    // const getDef = await Sdefine.findOne({
+    //     where: { activedef: 'yes' }
+
+    //     // where: { sno: '12' }
+    // })
+
+    res.json({ submitSch: SubmitSch });
+
+});
+
+
+app.get('/updateCheque', async (req, res) => {
+    console.log({ query: req.query });
+    console.log('from sno body');
+    const { sno } = req.query;
+    const { sno2 } = req.query;
+    console.log(sno, sno2);
+
+    const CancelChq = await SubmitSchedule.update({
+        amount: "0", payeename: "Cheque Cancelled",
+        paymenthead: ".......", objectcode: "....", project: " ......"
+    }, {
+        where: { chqno: sno2, sno }
+    })
+
+    const SubmitSch = await SubmitSchedule.findAndCountAll({
+        where: { sno }
+    })
+    const getDef = await Sdefine.findOne({
+        where: { activedef: 'yes' }
+
+        // where: { sno: '12' }
+    })
+
+
+    res.json({ submitSch: SubmitSch, getDef });
+
+});
+
+
 app.get('/printChq', async (req, res) => {
     console.log({ query: req.query });
     console.log('from sno body');

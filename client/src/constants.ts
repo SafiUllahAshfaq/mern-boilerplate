@@ -5,5 +5,8 @@ export const ROUTES = {
   subm: '/Subm',
   sdefine: '/sdefine',
   printSch: '/printSch',
-  printChq: '/printChq'
+  printChq: '/printChq',
+  updateSchedule: '/updateSchedule',
+  deleteCheque: '/deleteCheque'
+
 };
