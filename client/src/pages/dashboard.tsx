@@ -43,7 +43,8 @@ export const Dashboard = () => {
   return (
 
     <>
-      <Menu className='no-printme' mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-60deg, #055c2f 20%, #1a283d 20% ) ' }} >
+      {/* <Menu className='no-printme' mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-60deg, #055c2f 20%, #1a283d 20% ) ' }} > */}
+      <Menu className='no-printme' mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-60deg, #048252 20%, #1a283d 20% ) ' }} >
         {/* <Menu mode="horizontal" theme='dark' style={{ background: 'linear-gradient(-70deg, #fa7c30 30%, rgba(10, 34, 0, 0) 30%)' }} > */}
         <SubMenu key="sub1" icon={<PicCenterOutlined />} title="Prepare"  >
 
